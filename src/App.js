@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Dropzone from 'react-dropzone'
+import { uploadFile } from 'react-s3';
 
 class App extends Component {
   constructor() {
@@ -13,44 +14,25 @@ class App extends Component {
     }
   }
 
-  uploadImage = (file) => {
-    return axios.get('/upload', {
-      params: {
-        filename: file.name,
-        filetype: file.type,
-      }
+
+  uploadToS3 = (file) => {
+    const config = {
+      bucketName: process.env.REACT_APP_AWS_BUCKET,
+      // dirName: 'photos', /* optional */
+      region: 'us-west-1',
+      accessKeyId: process.env.REACT_APP_AWS_KEY,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET,
+    }
+
+    uploadFile(file, config)
+    .then(data => {
+      console.log(data)
     })
-    .then( response => {
-      const options = {
-        headers: {
-          'Content-Type': file.type
-        }
-      }
-      return axios.put(response.data.url, file, options).then( response => {
-        const { name } = response.config.data
-        return {
-          name,
-          isUploading: true,
-          url: `https://tallendev.s3.amazonaws.com/${file.name}` 
-        }
-      })
+    .catch(err => { 
+      console.error(err)
     })
   }
 
-  handleDrop = (files) => {
-    this.setState({isUploading: true})
-    let imageRequests = files.map( file => this.uploadImage(file))
-    Promise.all(imageRequests)
-    .then( images => {
-      this.setState({
-        isUploading: false,
-        images: [...this.state.images, ...images]
-      })
-    })
-    .catch( err => {
-      console.log(err)
-    })
-  }
 
   render() {
     const divStyle = {
@@ -82,7 +64,7 @@ class App extends Component {
         </header>
 
         <Dropzone
-          onDrop={this.handleDrop}
+          onDrop={this.uploadToS3}
           accept="image/*"
           style={divStyle}
           activeStyle={activeStyle}
