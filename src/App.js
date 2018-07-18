@@ -18,43 +18,40 @@ class App extends Component {
   }
 
   uploadFile = (file, signedRequest, url) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('PUT', signedRequest);
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          this.setState({url})
-        }
-        else{
-          alert('Could not upload file.');
-        }
+    var options = {
+      headers: {
+        'Content-Type': file.type
       }
     };
-    xhr.send(file);
+    axios.put(signedRequest, file, options)
+    .then( response => {
+      console.timeEnd('uploadTimer')
+      this.setState({url})
+    })
+    .catch( err => {
+      console.log(err)
+    })
   }
 
   
   getSignedRequest = (file) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          const response = JSON.parse(xhr.responseText);
-          this.uploadFile(file, response.signedRequest, response.url);
-        }
-        else{
-          alert('Could not get signed URL.');
-        }
+
+    axios.get('/sign-s3', {
+      params: {
+        'file-name': file.name,
+        'file-type': file.type
       }
-    };
-    xhr.send();
+    }).then( (response) => {
+      const { signedRequest, url } = response.data 
+      this.uploadFile(file, signedRequest, url)
+    }).catch( err => {
+      console.log(err)
+    })
   }
   
-  addFile = ({target:{files}}) => {
-    const file = files[0]
+  addFile = ([file]) => {
+    // const file = files[0]
     this.getSignedRequest(file)
-
   }
 
   render() {
@@ -64,7 +61,25 @@ class App extends Component {
 
         <h1>Upload</h1>
         <h1>{this.state.url}</h1>
-        <input onChange={ this.addFile } type="file" id="file-input" />>
+        <Dropzone 
+          onDropAccepted={this.addFile}
+          style={{
+            position: 'relative',
+            width: 200,
+            height: 200,
+            borderWidth: 7,
+            borderColor: 'rgb(102, 102, 102)',
+            borderStyle: 'dashed',
+            borderRadius: 5,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: 28,
+          }}
+          accept='image/*'
+          multiple={false} >
+            <p>Drop File or Click Here</p>
+        </Dropzone>
         
       </div>
     );
