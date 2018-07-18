@@ -1,51 +1,47 @@
 require('dotenv').config();
 const   express = require('express')
-        , aws = require('aws-sdk')
-        , cors = require('cors')
         , app = express()
         , port = 3010;
+const aws = require('aws-sdk');
 
-app.use(cors);
+app.use(express.json())
 
 const {
     AWS_KEY_ID,
     AWS_KEY_SECRET,
-    AWS_BUCKET
+    AWS_BUCKET,
+    AWS_ACCESS_KEY,
+    AWS_SECRET_ACCESS_KEY
 } = process.env
 
-aws.config.update({
-    accessKeyId: AWS_KEY_ID,
-    secretAccessKey: AWS_KEY_SECRET
-});
+const S3_BUCKET = process.env.AWS_BUCKET;
 
-function upload(file) {
-    const s3 = new aws.S3();
-    const params = {
-      Bucket: AWS_BUCKET,
-      Key: file.filename,
-      Expires: 60,
-      ContentType: file.filetype
+aws.config.region = 'us-west-1';
+
+app.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
     };
-  
-    return new Promise((resolve, reject) => {
-      s3.getSignedUrl('putObject', params, (err, url) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(url);
-      });
-    });
-  }
-  
-
-app.get('/upload', (req, res) => {
-    upload(req.query)
-    .then( url => { 
-        res.send( {url} )
-    })
-    .catch( err => {
-        console.log(err)
-    })
-})
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
 
 app.listen(port, () => console.log(`Hard to port ${port}`))
