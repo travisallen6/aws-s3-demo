@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Dropzone from 'react-dropzone'
-import ReactS3Uploader from 'react-s3-uploader'
-import { uploadFile } from 'react-s3';
+import { GridLoader } from 'react-spinners'
 
 class App extends Component {
   constructor() {
@@ -12,12 +10,13 @@ class App extends Component {
     this.state = {
       isUploading: false,
       images: [],
-      url: '',
-      value: ''
+      url: 'http://via.placeholder.com/200x200',
+      value: ''                
     }
   }
 
   uploadFile = (file, signedRequest, url) => {
+    
     var options = {
       headers: {
         'Content-Type': file.type
@@ -25,8 +24,8 @@ class App extends Component {
     };
     axios.put(signedRequest, file, options)
     .then( response => {
-      console.timeEnd('uploadTimer')
-      this.setState({url})
+      this.setState({isUploading: false, url: url})
+      // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
     })
     .catch( err => {
       console.log(err)
@@ -35,14 +34,15 @@ class App extends Component {
 
   
   getSignedRequest = (file) => {
-
+    const fileName = 'ta1-' + file.name.replace(/\s/g, '-')
     axios.get('/sign-s3', {
       params: {
-        'file-name': file.name,
+        'file-name': fileName,
         'file-type': file.type
       }
     }).then( (response) => {
       const { signedRequest, url } = response.data 
+      this.setState({isUploading: true})
       this.uploadFile(file, signedRequest, url)
     }).catch( err => {
       console.log(err)
@@ -78,8 +78,13 @@ class App extends Component {
           }}
           accept='image/*'
           multiple={false} >
-            <p>Drop File or Click Here</p>
+            
+            { this.state.isUploading 
+              ?  <GridLoader />
+              : <p>Drop File or Click Here</p>
+            }
         </Dropzone>
+        <img src={ this.state.url } width='200px' />
         
       </div>
     );

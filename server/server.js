@@ -7,14 +7,8 @@ const aws = require('aws-sdk');
 app.use(express.json())
 
 const {
-    AWS_KEY_ID,
-    AWS_KEY_SECRET,
-    AWS_BUCKET,
-    AWS_ACCESS_KEY,
-    AWS_SECRET_ACCESS_KEY
+    S3_BUCKET
 } = process.env
-
-const S3_BUCKET = process.env.AWS_BUCKET;
 
 aws.config.region = 'us-west-1';
 
