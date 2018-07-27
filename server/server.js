@@ -2,17 +2,25 @@ require('dotenv').config();
 const   express = require('express')
         , app = express()
         , port = 3010;
+        
+        app.use(express.json())
+        
 const aws = require('aws-sdk');
 
-app.use(express.json())
-
 const {
-    S3_BUCKET
+    S3_BUCKET,
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY
 } = process.env
 
-aws.config.region = 'us-west-1';
-
 app.get('/sign-s3', (req, res) => {
+
+  aws.config = {
+    region: 'us-west-1',
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY
+  }
+  
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
@@ -33,8 +41,8 @@ app.get('/sign-s3', (req, res) => {
       signedRequest: data,
       url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
     };
-    res.write(JSON.stringify(returnData));
-    res.end();
+
+    return res.send(returnData)
   });
 });
 
