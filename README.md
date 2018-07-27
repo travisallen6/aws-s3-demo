@@ -27,7 +27,6 @@ In order for your back-end code to work, it is important that the property names
 
 ## Create a New User and Generate Access Keys
 1. Once you are on the home page, type 'IAM' in the search box and click on the link to IAM in the search results.
-[img]
     <img src='assets/s3-02.jpg' />
 
 1. It is highly recommended by AWS that you delete your root access keys since they provide complete control over all AWS products and instead create a new IAM user with access restricted to only to specific products. In our case, we want to create a user with restricted access to S3.
