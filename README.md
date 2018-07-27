@@ -9,7 +9,7 @@ Once your account is set up, go to https://portal.aws.com and log in.
 ### BEFORE YOU DO ANYTHING ELSE BEYOND THIS POINT
 1. Go into the .gitignore file and add .env on a new line in the file, then save.
 
-    ![dotenv]('/assets/s3-1.jpg')
+    ![dotenv]('assets/s3-1.jpg')
 
     - We will be putting your s3 API keys in a .env file. If you don't add your .env to your .gitignore and you push to github, evil people will use your keys for their evil purposes at your expense.
     - **Failing to do this step could easily cost you $5,000/day. I wish I were kidding.**
