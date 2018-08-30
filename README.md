@@ -1,9 +1,12 @@
 # Amazon S3 Upload Walk-through and Demo
 
-## Account Setup
-If you haven't already signed up for an amazon S3 account, you can do so [here](https://portal.aws.amazon.com/billing/signup). S3 does cost money so you will need to input a credit card. However, AWS offers 12-months of free tier service as long as you don't exceed your limits. See details [here](https://aws.amazon.com/free/).
-
-Once your account is set up, go to https://portal.aws.com and log in.
+## Dependencies
+- aws-sdk
+- axios
+- express
+- uuid
+- react-spinners
+- react-dropzone
 
 ## .gitignore
 ### BEFORE YOU DO ANYTHING ELSE BEYOND THIS POINT
@@ -24,6 +27,11 @@ AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 ```
 In order for your back-end code to work, it is important that the property names in your .env are exactly as shown above. 
+
+## Account Setup
+If you haven't already signed up for an amazon S3 account, you can do so [here](https://portal.aws.amazon.com/billing/signup). S3 does cost money so you will need to input a credit card. However, AWS offers 12-months of free tier service as long as you don't exceed your limits. See details [here](https://aws.amazon.com/free/).
+
+Once your account is set up, go to https://portal.aws.com and log in.
 
 ## Create a New User and Generate Access Keys
 1. Once you are on the home page, type 'IAM' in the search box and click on the link to IAM in the search results.
@@ -291,16 +299,3 @@ app.get('/sign-s3', (req, res) => {
 1. An axios PUT request is sent to the signed URL along with the file and the configuration object with the necessary header.
 1. Once the .then of the axios PUT method fires, we now know that the file upload was successful.
 1. Inside this .then is where you would normally send the URL to the back-end on a POST request to be inserted into the database.
-
-
-
-
-
-
-
-
-
-
-
-
-
