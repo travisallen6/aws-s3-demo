@@ -31,7 +31,7 @@ In order for your back-end code to work, it is important that the property names
 ## Account Setup
 If you haven't already signed up for an amazon S3 account, you can do so [here](https://portal.aws.amazon.com/billing/signup). S3 does cost money so you will need to input a credit card. However, AWS offers 12-months of free tier service as long as you don't exceed your limits. See details [here](https://aws.amazon.com/free/).
 
-Once your account is set up, go to https://portal.aws.com and log in.
+Once your account is set up, go to https://console.aws.amazon.com and log in.
 
 ## Create a New User and Generate Access Keys
 1. Once you are on the home page, type 'IAM' in the search box and click on the link to IAM in the search results.
