@@ -78,21 +78,20 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
     <img src='assets/s3-13.jpg' />
 
 1. Give your bucket a name. Bucket names need to be unique so it may take a few tries to find one that is available. Then select your region. The code in server.js is assuming the bucket region will be 'US West (N. California)', so if you pick a different region you may need to modify the name of the region in server.js.
-    <img src='assets/s3-14.jpg' />
+    <img src='assets/s3-14.png' />
 
 1. In step 2 of the prompt, we don't need to change anything so click 'Next'.
-    <img src='assets/s3-15.jpg' />
+    <img src='assets/s3-15.png' />
 
-1. We also don't need to modify anything in step 3 of the prompt, so click 'Next'
-    <img src='assets/s3-16.jpg' />
+1. Un-check the two boxes shown outlined in yellow in the image below.
+    <img src='assets/s3-16.png' />
 
 1. On this screen, review your bucket details. This is probably a good time to copy your bucket name to your .env in the `S3_BUCKET=` field.
-    <img src='assets/s3-17.jpg' />
+    <img src='assets/s3-17.png' />
 
 1. Once you are finished, click 'Create bucket'
 
 ## Configure Bucket Permissions
-// ==================== ADD NATE'S SUGGESTED STEP=========================================//
 1. On your S3 dashboard, click the name of your bucket.
     <img src='assets/s3-18.jpg' />
 
