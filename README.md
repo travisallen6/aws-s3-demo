@@ -39,9 +39,9 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 
 1. It is highly recommended by AWS that you delete your root access keys since they provide complete control over all AWS products and instead create a new IAM user with access restricted to only to specific products. In our case, we want to create a user with restricted access to S3.
     1. Click delete your root access keys, then manage security credentials, then continue to security credentials
-    <img src='assets/s3-03.jpg' />
+      <img src='assets/s3-03.jpg' />
     1. In the actions column, click delete, then yes to the confirmation box.
-    <img src='assets/s3-04.jpg' />
+      <img src='assets/s3-04.jpg' />
 1. Click 'Users' on the left navigation menu, then 'Add user'.
     <img src='assets/s3-05.jpg' />
 1. Type a name for the user and check the 'programmatic access' checkbox, then click 'Next: permissions'
