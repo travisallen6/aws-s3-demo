@@ -75,12 +75,10 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
   <img src='assets/s3-12.jpg' />
 
 1. Click 'Create bucket'
-<img src='assets/s3-13.jpg' />
+  <img src='assets/s3-13.jpg' />
 
 1. Give your bucket a name. Bucket names need to be unique so it may take a few tries to find one that is available. Then select your region. The code in server.js is assuming the bucket region will be 'US West (N. California)', so if you pick a different region you may need to modify the name of the region in server.js.
   <img src='assets/s3-14.jpg' />
-
-# ******Dobuble check image
 
 1. In step 2 of the prompt, we don't need to change anything so click 'Next'.
   <img src='assets/s3-15.jpg' />
@@ -190,7 +188,7 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 1. If your upload is successful, you should see the placeholder url text at the top of the page change and shortly after you should see the your uploaded image on the screen.
   <img src='assets/s3-26.jpg' />
   <img src='assets/s3-27.jpg' />
-  
+
 1. You should now be able to go to your S3 bucket and see that your image is now in the bucket. You may need to click the refresh icon.
   <img src='assets/s3-28.jpg' />
 
