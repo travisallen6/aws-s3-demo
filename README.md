@@ -189,7 +189,7 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
     <img src='assets/s3-26.jpg' />
     <img src='assets/s3-27.jpg' />
 
-1. You should now be able to go to your S3 bucket and see that your image is now in the bucket. You may need to click the refresh icon.
+1. You should now be able to go to your S3 bucket and see that your image is now in the bucket. You may need to refresh your browser.
     <img src='assets/s3-28.jpg' />
 
 ## Code Walkthrough
