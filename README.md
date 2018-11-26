@@ -148,27 +148,24 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 
 1. Paste the following into the text box:
 
- // ======= DOUBLE CHECK THAT THIS ISN'T NESTING THE REST OF THE README   
-    
     <details>
     <summary><code>CORS Configuration</code></summary>
 
-      ```
-        
-        <CORSConfiguration>
-            <CORSRule>
-                <AllowedOrigin>*</AllowedOrigin>
-                <AllowedMethod>GET</AllowedMethod>
-                <AllowedMethod>POST</AllowedMethod>
-                <AllowedMethod>PUT</AllowedMethod>
-                <AllowedHeader>*</AllowedHeader>
-            </CORSRule>
-        </CORSConfiguration>
+    ```
 
-      ```
+    <CORSConfiguration>
+        <CORSRule>
+            <AllowedOrigin>*</AllowedOrigin>
+            <AllowedMethod>GET</AllowedMethod>
+            <AllowedMethod>POST</AllowedMethod>
+            <AllowedMethod>PUT</AllowedMethod>
+            <AllowedHeader>*</AllowedHeader>
+        </CORSRule>
+    </CORSConfiguration>
 
+    ```
     </details>
-    
+
 
 1. Once you are finished, click 'Save'
 
