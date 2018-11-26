@@ -60,7 +60,7 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 
     <img src='assets/s3-09-0.jpg' />
 
-1. Click 'Close' at the bottom right corner.
+1. Click 'Close' at the bottom right corner of the success screen.
 1. Click on the name of the user that you just created.
     <img src='assets/s3-10.jpg' />
 1. Copy the user ARN into a separate note taking app. You can use your .env, just make sure to not put it in any document that will be committed to github. You can add a note to your .env by placing a # in front of it.
@@ -68,31 +68,31 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 
 ## Create a New Bucket
 1. Click the services dropdown on the top navbar. Search for S3, or find it under 'storage' in the menu. S3 should also be an option in the 'History' list on the left part of the dropdown menu.
-<img src='assets/s3-12.jpg' />
+  <img src='assets/s3-12.jpg' />
 1. Click 'Create bucket'
 <img src='assets/s3-13.jpg' />
 1. Give your bucket a name. Bucket names need to be unique so it may take a few tries to find one that is available. Then select your region. The code in server.js is assuming the bucket region will be 'US West (N. California)', so if you pick a different region you may need to modify the name of the region in server.js.
-<img src='assets/s3-14.jpg' />
+  <img src='assets/s3-14.jpg' />
 
 # ******Dobuble check image
 
 1. In step 2 of the prompt, we don't need to change anything so click 'Next'.
-<img src='assets/s3-15.jpg' />
+  <img src='assets/s3-15.jpg' />
 
 1. We also don't need to modify anything in step 3 of the prompt, so click 'Next'
-<img src='assets/s3-16.jpg' />
+  <img src='assets/s3-16.jpg' />
 1. On this screen, review your bucket details. This is probably a good time to copy your bucket name to your .env in the `S3_BUCKET=` field.
-<img src='assets/s3-17.jpg' />
+  <img src='assets/s3-17.jpg' />
 1. Once you are finished, click 'Create bucket'
 
 ## Configure Bucket Permissions
 // ==================== ADD NATE'S SUGGESTED STEP=========================================//
 1. On your S3 dashboard, click the name of your bucket.
-<img src='assets/s3-18.jpg' />
+  <img src='assets/s3-18.jpg' />
 1. Click the 'Permissions' tab at the top.
-<img src='assets/s3-19.jpg' />
+  <img src='assets/s3-19.jpg' />
 1. Click on 'Bucket policy'
-<img src='assets/s3-21.jpg' />
+  <img src='assets/s3-21.jpg' />
 1. Paste the following into the policy editor:
 <details>
 <summary><code>Starter Bucket Policy</code></summary>
@@ -123,14 +123,14 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 </details>
 
 1. There are 2 lines in this policy that need to be changed in the JSON:
-<img src='assets/s3-20.jpg' />
+  <img src='assets/s3-20.jpg' />
   1. Copy and paste the ARN from the user that you created earlier into Principal.AWS line which is outlined in orange above.
   1. Copy and paste the bucket ARN found above the policy editor text box which is outlined in purple above into the resource property field which is highlighted in green above. After your bucket name, make sure to put a `/*` before the closing quotation mark.
 1. Once you are finished, click 'Save'
 
 ## Update CORS Configuration
 1. Click on the 'CORS configuration' button at the top of the page
-<img src='assets/s3-22.jpg' />
+  <img src='assets/s3-22.jpg' />
 1. Paste the following into the text box:
  // ======= DOUBLE CHECK THAT THIS ISN'T NESTING THE REST OF THE README   
     <details>
@@ -159,17 +159,17 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
 ## This Demo App Should Now Work
 1. Open one terminal and run `nodemon`
 1. Open a second terminal and run `npm start`
-<img src='assets/s3-23.jpg' />
+  <img src='assets/s3-23.jpg' />
 1. If a new browser window didn't open automatically, open a new one and navigate to http://localhost:3000
-<img src='assets/s3-24.jpg' />
+  <img src='assets/s3-24.jpg' />
 1. You can now drag an image into the file drop zone, or you can also click inside the square and select a picture to upload.
-<img src='assets/s3-25.jpg' />
+  <img src='assets/s3-25.jpg' />
 1. You should then see a loading animation inside the drop zone while your file is being uploaded to s3.
 1. If your upload is successful, you should see the placeholder url text at the top of the page change and shortly after you should see the your uploaded image on the screen.
-<img src='assets/s3-26.jpg' />
-<img src='assets/s3-27.jpg' />
+  <img src='assets/s3-26.jpg' />
+  <img src='assets/s3-27.jpg' />
 1. You should now be able to go to your S3 bucket and see that your image is now in the bucket. You may need to click the refresh icon.
-<img src='assets/s3-28.jpg' />
+  <img src='assets/s3-28.jpg' />
 
 ## Code Walkthrough
 ### App.js
