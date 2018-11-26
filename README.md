@@ -46,9 +46,10 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
     <img src='assets/s3-05.jpg' />
 1. Type a name for the user and check the 'programmatic access' checkbox, then click 'Next: permissions'
     <img src='assets/s3-06.jpg' />
-#*****ADD NEXT: Tags
+1. No changes necessary on this screen, so click 'Next: tags'
+    <img src='assets/s3-06-01.png' />
 1. No changes necessary on the next screen so just click 'Next: review'
-    <img src='assets/s3-07.jpg' />
+    <img src='assets/s3-07.png' />
 1. No Changes necessary on this screen either, so click 'Create user'
     <img src='assets/s3-08.jpg' />
 1. The next screen gives us the Access Key ID and Secret Access Key for the user. Click 'Show' in the secret access key column.
