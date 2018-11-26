@@ -152,7 +152,7 @@ Once your account is set up, go to https://console.aws.amazon.com and log in.
     <details>
     <summary><code>CORS Configuration</code></summary>
 
-      ```xml
+      ```
         
         <CORSConfiguration>
             <CORSRule>
